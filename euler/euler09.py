@@ -4,9 +4,9 @@
 #There exists exactly one Pythagorean triplet for which a + b + c = 1000.
 #Find the product abc.
 
-import sys
-sys.path.insert(0, '/Users/brianroper/Documents/github/math')
-target = 1000
+
+def python_triplet
+
 from pyTrip import pyTrip
 n=1
 m=1

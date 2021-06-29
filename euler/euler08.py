@@ -1,33 +1,38 @@
 #Project Euler Problem 8
 #Find the largest product of adjacent 13 numbers in the 1000 digit number
 
-import sys
-sys.path.insert(0, '/Users/brianroper/Documents/github/math')
-sys.path.insert(0, '/Users/brianroper/Documents/github/genLibrary')
+def file_to_int_array(filename):
+    file = open(filename)
+    
+    filestring = ""
+    int_array = []
+    
+    for line in file:
+        filestring += str(line.strip())
 
-from fileToIntList import fileToIntList
+    for i in range(len(filestring)):
+        int_array.append(int(filestring[i]))
+    
+    return int_array
 
-fileList = fileToIntList('euler8.txt')
 
-fileListStripped = []
-for i in fileList:
-    i = str(i)
-    for j in i:
-        fileListStripped.append(int(j))
+def main():
+    int_array = file_to_int_array('euler08.txt')
+    
+    largest_product = 0
+    
+    for start in range(0,len(int_array)-13):
+        subarray = int_array[start:start+13]
+        if subarray.count(0) == 0:
+            product = 1
+            for num in subarray:
+                product *= num
+                if product > largest_product:
+                    largest_product = product
 
-product = 0
-i = 0
-nMult = 13
-while i < len(fileListStripped)-nMult-1:
-    testProduct = 1
-    j = 0
-    while j < nMult:
-        testProduct *= fileListStripped[i+j]
-        j+=1
-    if testProduct > product:
-        product = testProduct
-    i+=1
+    print(largest_product)
 
-    #testProduct = fileListStripped[i]*fileListStripped[i+1]*fileListStripped[i+2]*fileListStripped[i+3]*fileListStripped[i+4]
+if __name__ == "__main__":
+    main()
+    
 
-print(product)
